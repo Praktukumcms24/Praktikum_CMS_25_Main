@@ -2,14 +2,22 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PelangganController;
+use App\Http\Controllers\ImageController;
+
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+*/
 
 // Halaman utama diarahkan ke daftar pelanggan
 Route::get('/', function () {
     return redirect('/pelanggan');
 });
 
-// Rute CR
-// UD pelanggan
+// ==========================
+// CRUD Pelanggan
+// ==========================
 Route::get('/pelanggan',             [PelangganController::class, 'index'])->name('pelanggan.index');
 Route::get('/pelanggan/create',      [PelangganController::class, 'create'])->name('pelanggan.create');
 Route::post('/pelanggan',            [PelangganController::class, 'store'])->name('pelanggan.store');
@@ -18,6 +26,16 @@ Route::get('/pelanggan/{id}/edit',   [PelangganController::class, 'edit'])->name
 Route::put('/pelanggan/{id}',        [PelangganController::class, 'update'])->name('pelanggan.update');
 Route::delete('/pelanggan/{id}',     [PelangganController::class, 'destroy'])->name('pelanggan.destroy');
 
-Route::get('/pendaftaran-ktp', function (){
-    return 'selamat datang di halaman pendaftaran KTP Online!';
+// ==========================
+// Middleware Contoh
+// ==========================
+Route::get('/pendaftaran-ktp', function () {
+    return 'Selamat datang di halaman pendaftaran KTP Online!';
 })->middleware('check.age');
+
+// ==========================
+// Upload Gambar
+// ==========================
+Route::get('/upload',                [ImageController::class, 'create'])->name('image.create');
+Route::post('/upload',               [ImageController::class, 'store'])->name('image.upload');
+Route::delete('/upload/{id}',        [ImageController::class, 'destroy'])->name('image.delete');
