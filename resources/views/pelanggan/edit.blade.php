@@ -3,28 +3,28 @@
 @section('title', 'Edit Pelanggan')
 
 @section('content')
-    <h2>Edit Pelanggan</h2>
+<h2>Edit Pelanggan</h2>
 
-    <form action="{{ route('pelanggan.update', $pelanggan->id) }}" method="POST">
-        @csrf
-        @method('PUT')
-        <div class="mb-3">
-            <label for="nama" class="form-label">Nama</label>
-            <input type="text" name="nama" class="form-control" value="{{ $pelanggan->nama }}" required>
-        </div>
-        <div class="mb-3">
-            <label for="alamat" class="form-label">Alamat</label>
-            <textarea name="alamat" class="form-control" rows="3" required>{{ $pelanggan->alamat }}</textarea>
-        </div>
-        <div class="mb-3">
-            <label for="no_telepon" class="form-label">No. Telepon</label>
-            <input type="text" name="no_telepon" class="form-control" value="{{ $pelanggan->no_telepon }}" required>
-        </div>
-        <div class="mb-3">
-            <label for="email" class="form-label">Email</label>
-            <input type="email" name="email" class="form-control" value="{{ $pelanggan->email }}" required>
-        </div>
-        <button type="submit" class="btn btn-primary">Update</button>
-        <a href="{{ route('pelanggan.index') }}" class="btn btn-secondary">Batal</a>
-    </form>
+<form action="{{ route('pelanggan.update', $pelanggan->id) }}" method="POST" enctype="multipart/form-data">
+  @csrf
+  @method('PUT')
+
+  <div class="mb-3">
+    <label>Nama</label>
+    <input type="text" name="nama" class="form-control" value="{{ old('nama', $pelanggan->nama) }}" required>
+  </div>
+  <div class="mb-3">
+    <label>Alamat</label>
+    <input type="text" name="alamat" class="form-control" value="{{ old('alamat', $pelanggan->alamat) }}" required>
+  </div>
+  <div class="mb-3">
+    <label>Email</label>
+    <input type="email" name="email" class="form-control" value="{{ old('email', $pelanggan->email) }}" required>
+  </div>
+  <div class="mb-3">
+    <label>No Telepon</label>
+    <input type="text" name="no_telepon" class="form-control" value="{{ old('no_telepon', $pelanggan->no_telepon) }}" required>
+  </div>
+  <button type="submit" class="btn btn-primary">Update</button>
+</form>
 @endsection

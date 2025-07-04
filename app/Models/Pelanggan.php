@@ -18,5 +18,6 @@ class Pelanggan extends Model
         'alamat',
         'no_telepon',
         'email',
+        'foto_pelanggan' 
     ];
 }

@@ -3,27 +3,36 @@
 @section('title', 'Tambah Pelanggan')
 
 @section('content')
-    <h2>Tambah Pelanggan</h2>
+<h2>Tambah Pelanggan</h2>
 
-    <form action="{{ route('pelanggan.store') }}" method="POST">
-        @csrf
-        <div class="mb-3">
-            <label for="nama" class="form-label">Nama</label>
-            <input type="text" name="nama" class="form-control" required>
-        </div>
-        <div class="mb-3">
-            <label for="alamat" class="form-label">Alamat</label>
-            <textarea name="alamat" class="form-control" rows="3" required></textarea>
-        </div>
-        <div class="mb-3">
-            <label for="no_telepon" class="form-label">No. Telepon</label>
-            <input type="text" name="no_telepon" class="form-control" required>
-        </div>
-        <div class="mb-3">
-            <label for="email" class="form-label">Email</label>
-            <input type="email" name="email" class="form-control" required>
-        </div>
-        <button type="submit" class="btn btn-success">Simpan</button>
-        <a href="{{ route('pelanggan.index') }}" class="btn btn-secondary">Kembali</a>
-    </form>
+@if ($errors->any())
+  <div class="alert alert-danger">
+    <ul class="mb-0">
+      @foreach ($errors->all() as $error)
+        <li>{{ $error }}</li>
+      @endforeach
+    </ul>
+  </div>
+@endif
+
+<form action="{{ route('pelanggan.store') }}" method="POST" enctype="multipart/form-data">
+  @csrf
+  <div class="mb-3">
+    <label>Nama</label>
+    <input type="text" name="nama" class="form-control" required>
+  </div>
+  <div class="mb-3">
+    <label>Alamat</label>
+    <input type="text" name="alamat" class="form-control" required>
+  </div>
+  <div class="mb-3">
+    <label>Email</label>
+    <input type="email" name="email" class="form-control" required>
+  </div>
+  <div class="mb-3">
+    <label>No Telepon</label>
+    <input type="text" name="no_telepon" class="form-control" required>
+  </div>
+  <button type="submit" class="btn btn-primary">Simpan</button>
+</form>
 @endsection

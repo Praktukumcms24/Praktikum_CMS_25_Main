@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>@yield('title', 'Aplikasi Pelanggan')</title>
+  <title><?php echo $__env->yieldContent('title', 'Aplikasi Pelanggan'); ?></title>
 
-  {{-- Bootstrap CSS --}}
+  
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
-  {{-- Bootstrap Icons --}}
+  
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 
   <style>
@@ -62,30 +62,31 @@
 </head>
 <body>
   <div class="d-flex">
-    {{-- Sidebar --}}
+    
     <div class="sidebar">
       <div class="menu">
         <h4>Aplikasi Pelanggan</h4>
-        <a href="{{ route('pelanggan.index') }}"><i class="bi bi-people-fill"></i> Data Pelanggan</a>
-        <a href="{{ route('pelanggan.create') }}"><i class="bi bi-person-plus-fill"></i> Tambah Pelanggan</a>
+        <a href="<?php echo e(route('pelanggan.index')); ?>"><i class="bi bi-people-fill"></i> Data Pelanggan</a>
+        <a href="<?php echo e(route('pelanggan.create')); ?>"><i class="bi bi-person-plus-fill"></i> Tambah Pelanggan</a>
       </div>
 
-      {{-- Tombol Logout --}}
-      <form action="{{ route('logout') }}" method="POST">
-        @csrf
+      
+      <form action="<?php echo e(route('logout')); ?>" method="POST">
+        <?php echo csrf_field(); ?>
         <button type="submit" class="btn btn-light w-100">
           <i class="bi bi-box-arrow-right"></i> Logout
         </button>
       </form>
     </div>
 
-    {{-- Main Content --}}
+    
     <div class="main-content">
-      @yield('content')
+      <?php echo $__env->yieldContent('content'); ?>
     </div>
   </div>
 
-  {{-- Bootstrap JS --}}
+  
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+<?php /**PATH D:\xampp\htdocs\Praktikum_cms_2025-main\resources\views/layouts/app.blade.php ENDPATH**/ ?>

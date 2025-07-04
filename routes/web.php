@@ -1,8 +1,10 @@
 <?php
-
+use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PelangganController;
 use App\Http\Controllers\ImageController;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -12,7 +14,7 @@ use App\Http\Controllers\ImageController;
 
 // Halaman utama diarahkan ke daftar pelanggan
 Route::get('/', function () {
-    return redirect('/pelanggan');
+    return redirect('/login');
 });
 
 // ==========================
@@ -39,3 +41,15 @@ Route::get('/pendaftaran-ktp', function () {
 Route::get('/upload',                [ImageController::class, 'create'])->name('image.create');
 Route::post('/upload',               [ImageController::class, 'store'])->name('image.upload');
 Route::delete('/upload/{id}',        [ImageController::class, 'destroy'])->name('image.delete');
+
+
+
+// Login / Logout
+Route::get('/login',  [AuthController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [AuthController::class, 'login']);
+Route::post('/logout',[AuthController::class, 'logout'])->name('logout');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/pelanggan', [PelangganController::class, 'index'])->name('pelanggan.index');
+    // dan route lainnya...
+});
